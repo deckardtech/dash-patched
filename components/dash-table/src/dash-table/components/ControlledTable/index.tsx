@@ -912,6 +912,10 @@ export default class ControlledTable extends PureComponent<ControlledTableProps>
             [fixed_columns ? 'dash-fixed-column' : '', 'dash-fixed-content']
         ];
 
+        // vx rawTable is a nested list of list
+        // with each element is a json representation of the corresponding table cell
+        // it include the header row, filter row
+        // the data rows after filtering
         const rawTable = this.tableFn();
         const {grid, empty} = this.tableFragments(
             fixed_columns,
@@ -919,6 +923,8 @@ export default class ControlledTable extends PureComponent<ControlledTableProps>
             rawTable,
             virtualized.offset.rows
         );
+
+        // vx the fragment table will also have header/filter and filtered rows
 
         const classes = [
             'dash-spreadsheet',
@@ -982,7 +988,7 @@ export default class ControlledTable extends PureComponent<ControlledTableProps>
             export_headers,
             merge_duplicate_headers
         };
-
+        // vx test
         return (
             <div
                 id={id}
@@ -1015,6 +1021,7 @@ export default class ControlledTable extends PureComponent<ControlledTableProps>
                                 onScroll={this.onScroll}
                             >
                                 {arrayMap3(
+                                    // basically zip the 3 arrays and then run the fn for the zipped tuple
                                     row,
                                     gridStyle[rowIndex],
                                     fragmentClasses[rowIndex],

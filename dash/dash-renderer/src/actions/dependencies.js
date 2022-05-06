@@ -183,6 +183,11 @@ function addPattern(depMap, idSpec, prop, dependency) {
 }
 
 function validateDependencies(parsedDependencies, dispatchError) {
+    // vx, parsedDependencies is a list of callback definitions
+
+    // vx both outStrs and outObjs are used to track whether an output component_prop has been
+    // claimed by some callback as output target. outStrs is used for string-based id format and
+    // outObjs is used for object-based id format
     const outStrs = {};
     const outObjs = [];
 
@@ -237,6 +242,7 @@ function validateDependencies(parsedDependencies, dispatchError) {
                 validateArg(idProp, head, cls, i, dispatchError);
             });
         });
+
 
         findDuplicateOutputs(outputs, head, dispatchError, outStrs, outObjs);
         findMismatchedWildcards(outputs, inputs, state, head, dispatchError);
@@ -315,6 +321,11 @@ function validateArg({id, property}, head, cls, i, dispatchError) {
 }
 
 function findDuplicateOutputs(outputs, head, dispatchError, outStrs, outObjs) {
+    // vx both outStrs and outObjs are used to track whether an output component_prop has been
+    // claimed by some callback as output target. outStrs is used for string-based id format and
+    // outObjs is used for object-based id format
+    // at the end of this method, either of the two data structure will be updated to record
+    // current callback for the output
     const newOutputStrs = {};
     const newOutputObjs = [];
     outputs.forEach(({id, property}, i) => {
@@ -1099,6 +1110,9 @@ export function addAllResolvedFromOutputs(resolve, paths, matches) {
 
 /*
  * For a given id and prop find all callbacks it's an input of.
+ *
+ * // vx: The return type described below is wrong.
+ * // It is actually a list of props which indeed have some callbacks using it as input dependencies
  *
  * Returns an array of objects:
  *   {callback, resolvedId, getOutputs, getInputs, getState}

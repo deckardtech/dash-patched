@@ -20,7 +20,7 @@ export default function lexer(lexicon: Lexicon, query: string): ILexerResult {
     while (query.length) {
         query = query.replace(/^\s+/, '');
 
-        const previous = result.slice(-1)[0];
+        const previous = result.slice(-1)[0]; // vx, get the last element of result array
         const previousLexeme = previous ? previous.lexeme : null;
 
         const lexemes: ILexeme[] = lexicon.filter(

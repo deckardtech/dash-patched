@@ -120,9 +120,13 @@ def register_callback(
         multi = False
     else:
         # Insert callback as multi Output
+        # vx, for normal multi output callback where outputs are defined as a list of output,
+        # the flatten_grouping basically return the same thing as it is already flattend
         insert_output = flatten_grouping(output)
         multi = True
 
+    # vx, for normal multi output callback where outputs are defined as a list of output,
+    # output_indices is a list like [0, 1, ...]
     output_indices = make_grouping_by_index(output, list(range(grouping_len(output))))
     callback_id = insert_callback(
         callback_list,

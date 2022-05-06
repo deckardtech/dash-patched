@@ -128,6 +128,8 @@ class BaseTreeContainer extends Component {
         );
         if (!isEmpty(changedProps)) {
             // Identify the modified props that are required for callbacks
+            // vx: wathcedKeys is the subset of the changed props which indeed have some
+            // callback depends on
             const watchedKeys = getWatchedKeys(
                 id,
                 keys(changedProps),
@@ -143,12 +145,19 @@ class BaseTreeContainer extends Component {
                 _dashprivate_dispatch(
                     notifyObservers({
                         id,
-                        props: pick(watchedKeys, changedProps)
+                        props: pick(watchedKeys, changedProps) // props is set to an object with only props which are changed and 'watched'
                     })
                 );
             }
 
             // Always update this component's props
+            // vx updateProps basically is small helper to return an action object which looks like following
+            // type: "ON_PROP_CHANGE"
+            // payload:
+            //   itempath: path to the component of which props changed, represented as a list of strings
+            //      like ["props", "children", 1, "props", "children",  1]
+            //   props: a dict containing the changed props names and values
+
             _dashprivate_dispatch(
                 updateProps({
                     props: changedProps,

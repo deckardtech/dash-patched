@@ -54,7 +54,7 @@ export default memoizeOneFactory(
     (
         fixedColumns: number,
         fixedRows: number,
-        cells: JSX.Element[][],
+        cells: JSX.Element[][], // this is just the rawTable data as called in ControlledTable
         offset: number
     ): {grid: (JSX.Element | null)[][]; empty: boolean[][]} => {
         const getPivot = (row: JSX.Element[]) =>

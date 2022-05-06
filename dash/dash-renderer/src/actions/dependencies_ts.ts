@@ -48,6 +48,8 @@ export function getCallbacksByInput(
     changeType?: any,
     withPriority = true
 ): ICallback[] {
+    // vx: this function return list of ICallback object, each such object tracks a callback which
+    // should be invoked
     const matches: ICallback[] = [];
     const idAndProp = combineIdAndProp({id, property: prop});
 
@@ -58,6 +60,8 @@ export function getCallbacksByInput(
             return [];
         }
 
+        // vx, the lines belows appears to try to populate matches array with the subset of callbacks
+        // which have an output actually exists in DOM
         callbacks.forEach(
             addAllResolvedFromOutputs(resolveDeps(), paths, matches)
         );
@@ -270,7 +274,8 @@ export function includeObservers(
     );
 }
 
-/*
+/* //vx, resolved might means resolve the MATCH/ALL wildcards?
+ *
  * Create a pending callback object. Includes the original callback definition,
  * its resolved ID (including the value of all MATCH wildcards),
  * accessors to find all inputs, outputs, and state involved in this

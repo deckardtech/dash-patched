@@ -19,7 +19,7 @@ import {crawlLayout} from './utils';
  * keyStr: sorted keys of the id, joined with ',' into one string
  * values: array of values in the id, in order of keys
  */
-
+// vx: I suspect path here means the xpath of the component in DOM tree
 export function computePaths(subTree, startingPath, oldPaths, events) {
     const {strs: oldStrs, objs: oldObjs} = oldPaths || {strs: {}, objs: {}};
 

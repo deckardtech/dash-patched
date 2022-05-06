@@ -83,7 +83,7 @@ export default (propsFn: () => ControlledTableProps) => {
 
     const filterFactory = new FilterFactory(augmentedPropsFn);
     const headerFactory = new HeaderFactory(augmentedPropsFn);
-    const edgeFactory = new EdgeFactory(propsFn);
+    const edgeFactory = new EdgeFactory(propsFn); // vx seems to be related to set the edge style/thickness of cells
 
     const merge = memoizeOne(
         (
@@ -104,6 +104,7 @@ export default (propsFn: () => ControlledTableProps) => {
     return () => {
         const edges = edgeFactory.createEdges();
 
+        // vx the cells in data cells will be after filtering
         const dataCells = cellFactory.createCells(
             edges.dataEdges,
             edges.dataOpEdges

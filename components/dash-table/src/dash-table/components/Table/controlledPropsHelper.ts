@@ -49,6 +49,8 @@ export default () => {
             visibleColumns
         } = R.merge(props, state) as SanitizedAndDerivedProps & StandaloneState;
 
+        // vx: the getVirtual() will apply filter on data to return only filtered rows
+        // virtual.data will be the filtered rows, virtual.indices will be their original index in the data array
         const virtual = getVirtual(
             visibleColumns,
             data,

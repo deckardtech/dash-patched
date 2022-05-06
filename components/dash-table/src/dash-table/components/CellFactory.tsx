@@ -68,7 +68,7 @@ export default class CellFactory {
             style_cell_conditional,
             style_data,
             style_data_conditional,
-            virtualized,
+            virtualized, // vx: virtualized is the filtered data array (i.e. rows removed by client-side filtering)
             visibleColumns
         } = this.props;
 
@@ -112,6 +112,8 @@ export default class CellFactory {
             dropdown_data
         );
 
+        // vx: operations will an array, each item is for one data row, and the value is basically
+        // the ui widget for row selection or deletion
         const operations = this.cellOperations(
             id,
             data,
@@ -138,6 +140,8 @@ export default class CellFactory {
 
         const markdown = this.getMarkdown(markdown_options);
 
+        // vx: so far I don't know what's the difference between partialCellContents and cellContents
+        // in my test session, they seems to have the similar set of cells
         const partialCellContents = this.cellContents.partialGet(
             visibleColumns,
             virtualized.data,
