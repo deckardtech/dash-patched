@@ -3,7 +3,6 @@ import subprocess
 import shlex
 import os
 import argparse
-import shutil
 import logging
 import coloredlogs
 
@@ -66,7 +65,12 @@ def build_components(components_source, concurrency):
         else "dash-core-components|dash-html-components|dash-table"
     )
 
-    cmdstr = f"npx lerna exec --concurrency {concurrency} --scope *@({source_glob})* -- npm run build"
+    if os.environ.get("BUILD_ENV", "prod") == "dev":
+        build_cmd = "build.dev"
+    else:
+        build_cmd = "build"
+    cmdstr = f"npx lerna exec --concurrency {concurrency} --scope *@({source_glob})* -- npm run {build_cmd}"
+
     cmd = shlex.split(cmdstr, posix=not is_windows)
     print(cmdstr)
 
@@ -117,11 +121,13 @@ def build_components(components_source, concurrency):
             sys.exit(1)
         else:
             print(f"🚚 Moving build artifacts from {build_directory} to {dest_path} 🚚")
-            shutil.rmtree(dest_path)
-            os.system(f'mv {build_directory}/* {dest_path}')
+            os.system(f"rm {dest_path}/*")
+            os.system(f"mv {build_directory}/* {dest_path}")
             with open(os.path.join(dest_path, ".gitkeep"), "w"):
                 pass
-            print(f"🟢 Finished moving build artifacts from {build_directory} to {dest_path} 🟢")
+            print(
+                f"🟢 Finished moving build artifacts from {build_directory} to {dest_path} 🟢"
+            )
 
 
 def cli():
