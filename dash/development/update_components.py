@@ -116,12 +116,12 @@ def build_components(components_source, concurrency):
             )
             sys.exit(1)
         else:
-            print(f"🚚 Moving build artifacts from {build_directory} to Dash 🚚")
+            print(f"🚚 Moving build artifacts from {build_directory} to {dest_path} 🚚")
             shutil.rmtree(dest_path)
-            shutil.copytree(build_directory, dest_path)
+            os.system(f'mv {build_directory}/* {dest_path}')
             with open(os.path.join(dest_path, ".gitkeep"), "w"):
                 pass
-            print(f"🟢 Finished moving build artifacts from {build_directory} to Dash 🟢")
+            print(f"🟢 Finished moving build artifacts from {build_directory} to {dest_path} 🟢")
 
 
 def cli():
