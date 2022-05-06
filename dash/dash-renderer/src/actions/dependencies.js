@@ -243,7 +243,6 @@ function validateDependencies(parsedDependencies, dispatchError) {
             });
         });
 
-
         findDuplicateOutputs(outputs, head, dispatchError, outStrs, outObjs);
         findMismatchedWildcards(outputs, inputs, state, head, dispatchError);
     });

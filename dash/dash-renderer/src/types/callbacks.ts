@@ -26,7 +26,7 @@ export interface ICallbackTemplate {
     // vx: seems to identify an instance of callback?
     anyVals: any[] | string;
     callback: ICallbackDefinition;
-     // vx, will be set to a dict, which has one key as the input component_prop which actually changed,
+    // vx, will be set to a dict, which has one key as the input component_prop which actually changed,
     // the value is some enum to identify what caused the change. Normally will be DIRECT (2) which seems
     // to mean the change is from user interaction.
     // notice a callback can have multiple inputs and only one is changed
