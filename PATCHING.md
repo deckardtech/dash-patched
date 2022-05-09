@@ -1,5 +1,13 @@
-# Overview
+# Ditched attempt to upgrade dash-table used in Cyborg to the one in Dash 2.3.1 !
+When upgraded to use the dash-table in Dash 2.3.1 (after patch), it causes two issues
+1) somehow the columns of all table becomes much wider. I suspect the minWidth/maxWidth of the dash-table does not work
+2) when I try to debug with React Dev tool component viewer, the tool failed to show the component tree, and show "Uncaught error:
+Cannot add node "1" because a node with that id is already in the Store." instead.
 
+Will check again in future Dash release
+
+
+# Overview
 This branch is based on v.2.3.1 tag
 
 It patched the dash-table module with following:
