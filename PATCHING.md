@@ -4,8 +4,10 @@ This branch is based on v.2.3.1 tag
 
 It patched the dash-table module with following:
 
-1) tooltip_conditional bug - https://github.com/plotly/dash-table/issues/917
+1) tooltip_conditional bug - https://github.com/plotly/dash-table/issues/917.
+The fix is based on https://github.com/plotly/dash-table/pull/906/files
 2) case-insensitive filter bug - https://github.com/plotly/dash-table/issues/934,
+The fix is based on https://github.com/plotly/dash-table/pull/935/files
 
 # Setup
 You have to first follow the steps in the CONTRIBUTING.md to setup the venv, install the npm depencies
