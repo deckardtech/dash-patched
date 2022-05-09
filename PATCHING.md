@@ -35,6 +35,8 @@ the patched version built from this repo. So far this process is done manually a
     'dash-table-patched'. This value will be used in Python side to identify the JS package
    * update the <path_to_cyborg_repo>/src/dash_table_patched/bundle.js, change
     window.dash_table=l to window.dash_table_patched=l 
+   * update the <path_to_cyborg_repo>/src/dash_table_patched/DataTable.py, change
+    self._namespace = 'dash_table_patched'
 
 For cyborg to use this patched dash-table, it will do following two things
  * In src/cybrog_web_app/__init__.py, add code to add src folder to the front of the sys.path

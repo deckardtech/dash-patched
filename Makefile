@@ -6,6 +6,7 @@ build-dash-table:
 deploy-patched-dash-table-to-cyborg-repo:
 	rm -rf $(PATCHED_DASH_TABLE_DEPLOY_DIR)
 	cp -r dash/dash_table $(PATCHED_DASH_TABLE_DEPLOY_DIR)
+	sed -i 's/self._namespace = "dash_table"/self._namespace = "dash_table_patched"/' $(PATCHED_DASH_TABLE_DEPLOY_DIR)/DataTable.py
 	sed -i 's/"name": "dash-table"/"name": "dash-table-patched"/' $(PATCHED_DASH_TABLE_DEPLOY_DIR)/package-info.json
 	sed -i 's/window.dash_table=/window.dash_table_patched=/' $(PATCHED_DASH_TABLE_DEPLOY_DIR)/bundle.js
 
