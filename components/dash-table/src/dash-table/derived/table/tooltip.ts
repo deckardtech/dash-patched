@@ -36,13 +36,14 @@ function getSelectedTooltip(
     if (id === undefined || row === undefined) {
         return undefined;
     }
+    const realRowIdx = virtualized.indices[row - virtualized.offset.rows];
     const conditionalTooltips = header
         ? undefined
         : R.findLast(tt => {
               return (
                   !tt.if ||
                   (ifColumnId(tt.if, id) &&
-                      ifRowIndex(tt.if, row) &&
+                      ifRowIndex(tt.if, realRowIdx) &&
                       ifFilter(
                           tt.if,
                           virtualized.data[row - virtualized.offset.rows]
@@ -62,7 +63,7 @@ function getSelectedTooltip(
             ? headerTooltip?.[row]
             : headerTooltip;
     } else {
-        tooltip = tooltip_data?.[row]?.[id];
+        tooltip = tooltip_data?.[realRowIdx]?.[id];
     }
 
     if (tooltip) {
