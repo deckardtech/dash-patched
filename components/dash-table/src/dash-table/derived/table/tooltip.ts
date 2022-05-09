@@ -31,12 +31,16 @@ function getSelectedTooltip(
         return undefined;
     }
 
+    // vx, header is a boolean, indicating whether it is header row, id is the column id, row is the row index
+    // (in the original data array pre-filtering/sorting)
     const {header, id, row} = currentTooltip;
 
     if (id === undefined || row === undefined) {
         return undefined;
     }
     const realRowIdx = virtualized.indices[row - virtualized.offset.rows];
+
+    console.log('vx', {header, id, row, virtualized})
     const conditionalTooltips = header
         ? undefined
         : R.findLast(tt => {

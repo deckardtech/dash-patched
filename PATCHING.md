@@ -13,8 +13,7 @@ and run the initial build.
 
 # How to test code change to dash-table ReactJS component quickly 
 ```
-cd componetns/dash-table
-npm run build.watch
+cd components/dash-table; npm run build.watch
 ```
 It will use webpack dev server to serve a simple test app in components/dash-table/demo/App.ts which uses
 the dash-table ReactJS component (no Python code involved)
