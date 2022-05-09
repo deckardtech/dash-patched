@@ -37,7 +37,10 @@ the patched version built from this repo. So far this process is done manually a
     window.dash_table=l to window.dash_table_patched=l 
    * update the <path_to_cyborg_repo>/src/dash_table_patched/DataTable.py, change
     self._namespace = 'dash_table_patched'
-
+   * update the <path_to_cyborg_repo>/src/dash_table_patched/__init__.py, change
+   "namespace": "dash" to "namespace": package_name
+   "relative_package_path": "dash_table/xxx" to "relative_package_path": "xxx"
+   
 For cyborg to use this patched dash-table, it will do following two things
  * In src/cybrog_web_app/__init__.py, add code to add src folder to the front of the sys.path
  * Wherever we need to use the patched version of the dash-table, we should use 'import dash_table_patched'
